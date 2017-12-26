@@ -1,6 +1,6 @@
 {
-    "name": "Backgroud Image Generator",
-    "short_name": "BG Image Gen",
+    "name": "Wallpaper Generator",
+    "short_name": "Wallpaper Gen",
     "start_url": "/?homescreen=1",
     "display": "standalone",
     "background_color": "#fff",
