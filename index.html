@@ -4,17 +4,74 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Mobile Backgroud Image generator</title>
+    <title>Backgroud Image Generator</title>
+    <style>
+        .control {
+            background: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+        h1 {
+            margin-top: 0;
+        }
+        button {
+            font-size: 1.2em;
+            margin: 1em 0 0;
+            padding:.2em 1em;
+        }
+    </style>
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="icon" sizes="192x192" href="assets/images/icon_192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Backgroud Image Generator">
+    <link rel="apple-touch-icon-precomposed" href="assets/images/icon_144.png">
+
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="assets/images/icon_192.png">
+    <meta name="msapplication-TileColor" content="#fff">
+
+    <link rel="shortcut icon" href="assets/images/icon_16.png">
+
+    <link rel="manifest" href="/manifest.json">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-59829770-18"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-59829770-18');
+    </script>
 </head>
 <body>
-    <h1>Mobile Backgroud Image generator</h1>
-    <label>
-        Pick a color:
-        <input type="color" id="color" />
-    </label>
-    <br/>
-    <button id="download">Download</button>
+    <div class="control">
+        <h1>Backgroud Image Generator</h1>
+        <label>
+            First pick a color for the background image:
+            <input type="color" id="color" value="#ffffff" />
+        </label>
+        <br/>
+        <button id="download">Download</button>
+        <p>Use this tool to quickly generate solid color image for your device background. The image size is determined automatically. Works best on mobile.</p>
+    </div>
     <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(function (registration) {
+                    console.log('Service Worker Registered');
+                });
+            navigator.serviceWorker.ready.then(function (registration) {
+                console.log('Service Worker Ready');
+            });
+        }
+        document.querySelector("#color").addEventListener("change", function() {
+            document.body.style.backgroundColor = this.value;
+        });
         document.querySelector("#download").addEventListener("click", function() {
             var color = document.querySelector("#color").value;
             var canvas = document.createElement("canvas");
@@ -32,7 +89,7 @@
             a.click();
             document.body.removeChild(a);
             document.body.removeChild(canvas);
-        })
+        });
     </script>
 </body>
 </html>
