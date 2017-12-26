@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Mobile Backgroud Image generator</title>
+</head>
+<body>
+    <h1>Mobile Backgroud Image generator</h1>
+    <label>
+        Pick a color:
+        <input type="color" id="color" />
+    </label>
+    <br/>
+    <button id="download">Download</button>
+    <script>
+        document.querySelector("#download").addEventListener("click", function() {
+            var color = document.querySelector("#color").value;
+            var canvas = document.createElement("canvas");
+            canvas.height = screen.height;
+            canvas.width = screen.width;
+            var ctx = canvas.getContext("2d");
+            ctx.fillStyle = color;
+            ctx.fillRect(0, 0, canvas.width, canvas.height)
+            document.body.appendChild(canvas);
+            var a = document.createElement('a')
+            var dt = canvas.toDataURL('image/png');
+            a.href = dt;
+            a.download = 'background.png';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            document.body.removeChild(canvas);
+        })
+    </script>
+</body>
+</html>
