@@ -1,6 +1,6 @@
 {
     "name": "Wallpaper Generator",
-    "short_name": "Wallpaper Gen",
+    "short_name": "Wallpaperer",
     "start_url": "/?homescreen=1",
     "display": "standalone",
     "background_color": "#fff",
